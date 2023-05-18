@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import axios from 'axios';
 import Container from './components/Container';
 import Spinner from './components/Spinner';
 
@@ -9,16 +8,9 @@ function App() {
 
   const handleClick = async () => {
     setIsLoading(true);
-    
-    try {
-      const response = await axios.get('https://meowfacts.herokuapp.com/');
-      const phrase = response.data.data;
-      setQuote(phrase);
-    } catch (error) {
-      console.log('Error fetching quote:', error);
-      setQuote('Failed to fetch quote');
-    }
-    
+      const response = await fetch('https://meowfacts.herokuapp.com/').then(response => response.json())
+      const phrase = response.data
+      setQuote(phrase)
     setIsLoading(false);
   };
 
