@@ -11,12 +11,9 @@ function App() {
 
   const handleClick = async (event) => {
     setIsLoading(true)
-    const getCat = async () => {
-      const responses = await axios.get('https://meowfacts.herokuapp.com/')
-      const phrase = responses.data.data
-      setQuote(phrase)
-    }
-    getCat()
+    const responses = await axios.get('https://meowfacts.herokuapp.com/')
+    const phrase = responses.data.data
+    setQuote(phrase)
     setIsLoading(false)
   }
 
@@ -25,8 +22,8 @@ function App() {
       <button data-testid="button" onClick={e => handleClick(e)}>
         <span>get a fact</span>
       </button>
-      {isLoading || quote === '' ? 
-        ( <Spinner /> ) : ( <span data-testid="quote">{quote}</span> )
+      {isLoading || quote === '' ?
+        (<Spinner />) : (<span data-testid="quote">{quote}</span>)
       }
     </Container>
   );
