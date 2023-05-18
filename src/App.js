@@ -11,10 +11,12 @@ function App() {
 
   const handleClick = async (event) => {
     setIsLoading(true)
+    event.preventDefault()
     const responses = await axios.get('https://meowfacts.herokuapp.com/')
     const phrase = responses.data.data
     setQuote(phrase)
     setIsLoading(false)
+    return(quote)
   }
 
   return (
